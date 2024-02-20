@@ -249,67 +249,83 @@ dev.off()
 
 g <- ggplot(data.coef.df.merged, aes(x=date.first,y=log(relative_Re+0.1), size = count.hap, fill = clade))
 g <- g + geom_point(shape = 21, alpha = 0.7)
-g <- g + theme(...
-Collapse
- This snippet was truncated for display; see it in full
+g <- g + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g <- g + theme_set(theme_classic(base_size = 12, base_family = "Helvetica"))
+g <- g + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g <- g + geom_hline(yintercept=c(-1,-0.5,0,0.25,0.5,1),color="gray70")
+g <- g + facet_wrap(~country)
+g <- g + xlab("Date") + ylab("Relative Re (log)")
+#g <- g + scale_y_continuous(lim=c(0,2))
+
+pdf.name <- "time_vs_fitness_each_country_log_with_peudo.pdf"
+pdf(pdf.name, width = 15, height = 10)
+print(g)
+dev.off()
 
 
 
-15:17
-make_input_table_add_seq.py
- 
-#!/usr/bin/env python
+g <- ggplot(data.coef.df.merged, aes(x=date.first,y=relative_Re, size = count.hap, fill = clade))
+g <- g + geom_point(shape = 21, alpha = 0.7)
+g <- g + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g <- g + theme_set(theme_classic(base_size = 12, base_family = "Helvetica"))
+g <- g + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g <- g + geom_hline(yintercept=c(1,2,3,4),color="gray70")
+g <- g + facet_wrap(~country)
+g <- g + xlab("Date") + ylab("Relative Re")
+#g <- g + scale_y_continuous(lim=c(0,2.5))
 
-import sys
-import pandas as pd
-from Bio import SeqIO as sio
-
-def to_dict(path=None, file_format='fasta', robust=False, unique=False):
-    if path is None:
-        print('Path to file required')
-        return
-    if robust:
-        print('Forced unique sequence names')
-        # `record.description` を使用してヘッダー全体を取得
-        res = {f'{i}_'+record.description: str(record.seq) for i, record in enumerate(sio.parse(path, file_format))}
-    elif unique:
-        print('Removed duplicate name occurrences without checking sequences')
-        names = set()
-        res = {}
-        for record in sio.parse(path, file_format):
-            # ここでも `record.description` を使用
-            if record.description not in names:
-                names.add(record.description)
-                res[record.description] = str(record.seq)
-    else:
-        # ヘッダー全体をキーとして使用
-        res = {record.description: str(record.seq) for record in sio.parse(path, file_format)}
-
-    return res
-argvs = sys.argv
-
-metadata_f = open(argvs[1])
-fasta_f = open(argvs[2])
-
-header = metadata_f.__next__().strip()
-
-name_l = []
-metadata_l = []
-for line in metadata_f:
-  line = line.strip().split("\t")
-  name = line[3]
-  name_l.append(name)
-  metadata_l.append(line)
+pdf.name <- "time_vs_fitness_each_country.pdf"
+pdf(pdf.name, width = 15, height = 10)
+print(g)
+dev.off()
 
 
-name_s = set(name_l)
+haplotype.mut_profile <- metadata.filtered.interest.representative %>% dplyr::select(hap_Id,haplotype) %>% separate_rows(haplotype, sep = ",\\s*")
+haplotype.mut_profile <- haplotype.mut_profile %>% mutate(pos = gsub("[^0-9]","",haplotype), pos = as.numeric(pos))
+haplotype.mut_profile <- haplotype.mut_profile %>% inner_join(metadata.filtered.interest.representative %>% dplyr::select(hap_Id,clade),by="hap_Id")
+haplotype.mut_profile <- haplotype.mut_profile %>% mutate(hap_Id = factor(hap_Id, levels=date.quantile.df$hap_Id)) %>% arrange(hap_Id)
 
-seq_d = to_dict(path=fasta_f, unique=True)
+count.hap_with_mut_each_pos <- haplotype.mut_profile %>% group_by(pos) %>% summarize(count.hap = n()) %>% arrange(pos)
 
-print(header + "\tseq")
-for i in range(len(name_l)):
-  name = name_l[i]
-  line = metadata_l[i]
-  seq = seq_d[name] #.replace("-","")
-  line.append(seq)
-  print("\t".join(line))
+g2 <- ggplot(count.hap_with_mut_each_pos,aes(x=pos,y=log(count.hap,10)))
+g2 <- g2 + geom_point(size=0.01)
+g2 <- g2 + xlab("") + ylab("log10(count)")
+
+g1 <- ggplot(haplotype.mut_profile,aes(x=pos,y=hap_Id, color = clade))
+g1 <- g1 + geom_point(size=0.01)
+
+g1 <- g1 + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g1 <- g1 + theme_set(theme_classic(base_size = 12, base_family = "Helvetica"))
+g1 <- g1 + theme(panel.grid.major = element_blank(),
+               panel.grid.minor = element_blank(),
+               panel.background = element_blank(),
+               strip.text = element_text(size=8)
+)
+g1 <- g1 + theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
+g1 <- g1 + xlab("Amino acid position") + ylab(paste("haplotype (",as.character(nrow(date.quantile.df)),")",sep=""))
+
+pdf.name <- "mut_heatmap.pdf"
+pdf(pdf.name, width = 10, height = 5)
+print(g2 / g1 + plot_layout(ncol = 1, heights = c(1, 3)))
+dev.off()
+
