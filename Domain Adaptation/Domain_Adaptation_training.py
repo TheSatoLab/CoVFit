@@ -175,7 +175,7 @@ evaluator = Trainer(
 recent_results_old = evaluator.evaluate()
 
 
-model = EsmForMaskedLM.from_pretrained(f"model_{version}")
+model = EsmForMaskedLM.from_pretrained(f"{version}/model")
 
 evaluator = Trainer(
   model=model,
