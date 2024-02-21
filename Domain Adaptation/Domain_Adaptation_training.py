@@ -158,8 +158,8 @@ eval_results_new = evaluator.evaluate()
 
 import math
 print('ESM2 Uniref Data:')
-print(f"Original Model's Perplexity: {math.exp(eval_results_old['eval_loss']):.9f}")
-print(f"Adapted Model's Perplexity: {math.exp(eval_results_new['eval_loss']):.9f}")
+print(f"Original Model's Perplexity: {math.exp(eval_results_old['eval_loss']):.4f}")
+print(f"Adapted Model's Perplexity: {math.exp(eval_results_new['eval_loss']):.4f}")
 
 
 ### Evaluation on "future" SARS-CoV-2 sequences
@@ -187,5 +187,5 @@ recent_results_new = evaluator.evaluate()
 
 
 print('Future SARS-CoV-2 Data:')
-print(f"Original Model's Perplexity: {math.exp(recent_results_old['eval_loss']):.9f}")
-print(f"Adapted Model's Perplexity: {math.exp(recent_results_new['eval_loss']):.9f}")
+print(f"Original Model's Perplexity: {math.exp(recent_results_old['eval_loss']):.4f}")
+print(f"Adapted Model's Perplexity: {math.exp(recent_results_new['eval_loss']):.4f}")
