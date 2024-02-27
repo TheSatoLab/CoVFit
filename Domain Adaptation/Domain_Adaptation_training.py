@@ -50,7 +50,7 @@ train_df.columns=['seq']
 full_df = pd.read_table('metadata.representative.all_countries.with_date.with_aligned_seq.with_immune_escape_score.txt')
 input_df = full_df[['relative_Re', 'country', 'seq', 'date.first','relative_Re_log', 'clade']]
 cutoff = pd.to_datetime('2022-09-01')
-input_df['date.first']=pd.to_datetime(input_df['date.first'])
+input_df['date.first'] = pd.to_datetime(input_df['date.first'])
 recent_df = input_df[input_df['date.first']>=cutoff]
 
 
