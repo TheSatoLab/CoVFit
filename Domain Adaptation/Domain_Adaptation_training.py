@@ -36,7 +36,7 @@ np.random.seed(randseed)
 ### Data Prep
 
 df_cv = pd.read_csv('df_coronaviradae_new.csv') # coronaviradae sequences
-df_sc2 = pd.DataFrame.from_dict({i.id:str(i.seq) for i in sio.parse('legacy_seq_20220831_db99.fasta', 'fasta')},orient='index',columns=['seq']) # SARS-CoV-2 sequences
+df_sc2 = pd.DataFrame.from_dict({i.id:str(i.seq) for i in sio.parse('legacy_seq_20220831_db99.fasta', 'fasta')}, orient='index', columns=['seq']) # SARS-CoV-2 sequences
 df_uniref = pd.read_table('../uniref/uniref_subset_seq.tsv') # uniref50 sequences
 
 
