@@ -69,7 +69,8 @@ def tokenizer_for_map(input): #Tokenizer and params including special_tokens_mas
         padding='max_length',
         truncation=True,
         max_length=1000,
-        return_special_tokens_mask=True)
+        return_special_tokens_mask=True
+    )
   
 column_names = train_dataset.column_names #This will be the names of all the old columns, to then be deleted after the new tokenized columns are added.
 
@@ -110,7 +111,7 @@ scheduler = get_cosine_schedule_with_warmup(optimizer, num_warmup_steps=warmup_s
 training_args = TrainingArguments(
     output_dir=f"{version}/trainer",
     overwrite_output_dir=True,
-    num_train_epochs = num_epochs,
+    num_train_epochs=num_epochs,
     per_device_train_batch_size=batch_size,
     evaluation_strategy='no',
     do_eval=False,
