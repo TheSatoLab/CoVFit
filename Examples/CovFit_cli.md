@@ -9,8 +9,7 @@ Once extracted, you'll find the CovFit_cli executable inside a folder of the sam
 To view the command line syntax and options for the CovFit CLI, `cd` to the `CovFit_cli` directory and input:<br>
 `./CovFit_cli --help`
 
-An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/Covid` directory would be:
-
+An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/Covid` directory would be:<br>
 `./CovFit_cli --input ~/Documents/Covid/my_file.fasta --outdir ~/Documents/Covid/output/`
 
 
