@@ -26,5 +26,5 @@ The batch size argument, set with `-b, --batch`, controls how many sequences are
 By default, CovFit CLI will perform calculations on the CPU. Performing the calculations on a GPU using the `-g, --gpu` argument may significantly increase inference speed. An Nvidia GPU and CUDA installation are required. 
 
 ## Example with full options:
-`./CovFit_cli --input my_file.fasta -outdir ~Documents/Covid/output --fold 3 --dms --batch 16 --gpu` 
+`./CovFit_cli --input my_file.fasta -outdir ~/Documents/Covid/output --fold 3 --dms --batch 16 --gpu` 
 
