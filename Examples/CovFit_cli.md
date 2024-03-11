@@ -14,7 +14,7 @@ An example of using CovFit if you have a fasta file named `my_file.fasta` in you
 The output file will be named CovFit_Predictions_Fold_X.tsv, where X is the number of the model instance used. 
 
 ### Folds
-The CovFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument.   
+The CovFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument and an integer from 0 to 4.   
 
 ### DMS
 By default, CovFit CLI will return predictions for viral fitness. Specifying the `-d, --dms` flag will additionally output the prediction scores for the 1,548 DMS tasks the model was trained on. 
