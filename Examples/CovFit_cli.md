@@ -31,3 +31,5 @@ The follow command:<br>
 `./CovFit_cli --input my_file.fasta -outdir ~/Documents/Covid/output --fold 3 --dms --batch 16 --gpu` <br>
 will perform inference on the GPU with 16 sequences per batch and output `~/Documents/Covid/output/CovFit_Predictions_Fold_3.tsv` where the first column is the mean fitness score accross countries, the next 1,548 columns are the DMS results, and the final 17 columns are the fitness results for each country.
 
+To separate just the DMS results in a separate file, you can for instance use `cut -f 1,3-1550 CovFit_Predictions_fold_3.tsv > just_DMS.tsv` or for just the fitness fields `cut --complement -f 3-1550 CovFit_Predictions_fold_3.tsv > just_fitness.tsv` 
+
