@@ -1,3 +1,4 @@
+## Creating the dataset
 To generate the input data for CovFit training, running the make_input.sh bash script will perform the following operations:
 
 - Run the Nextclade CLI on the nucleotide sequence fasta from GISAID to genrate protein translations and find mutations
