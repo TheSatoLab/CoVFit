@@ -2,13 +2,12 @@
 A protein language model for learning the SARS-CoV-2 fitness landscape
 
 ## Summary
-SARS-CoV-2 has increased its potential to spread, i.e., fitness, through the acquisition of mutations, leading to repeated epidemic surges. The genetic basis of viral fitness elevation could be elucidated by modeling the relationship between genotypes and their fitness. Here, we introduce CovFit, a protein language model predicting the fitness of variants based on their spike (S) protein sequences.
-
+Successively emerging SARS-CoV-2 variants lead to repeated epidemic surges through escalated spreading potential (i.e., fitness). Modeling genotype–fitness relationship enables us to pinpoint the mutations boosting viral fitness and flag high-risk variants immediately after their detection. Here, we introduce CoVFit, a protein language model able to predict the fitness of variants based solely on their spike protein sequences.
 
 ## Contents
 
 ## Citation
-**Learning the SARS-CoV-2 fitness landscape with a protein language model**. Jumpei Ito, Adam Strange, Wei Liu, Gustav Joas, Spyros Lytras, The Genotype to Phenotype Japan (G2P-Japan) Consortium, Kei Sato. 2024. bioRxiv.
+**A Protein Language Model for Exploring Viral Fitness Landscapes**. Jumpei Ito, Adam Strange, Wei Liu, Gustav Joas, Spyros Lytras, The Genotype to Phenotype Japan (G2P-Japan) Consortium, Kei Sato. 2024. bioRxiv.
 
 ## Contact
 jampei@g.ecc.u-tokyo.ac.jp (Jumpei Ito)
