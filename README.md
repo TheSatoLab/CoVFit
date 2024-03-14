@@ -2,7 +2,7 @@
 A protein language model for accurately predicting the fitness of SARS-CoV-2 variants
 
 ## Summary
-Successively emerging SARS-CoV-2 variants lead to repeated epidemic surges through escalated spreading potential (i.e., fitness). Modeling genotype–fitness relationship enables us to pinpoint the mutations boosting viral fitness and flag high-risk variants immediately after their detection. Here, we introduce CoVFit, a protein language model able to predict the fitness of variants based solely on their spike protein sequences.
+Continually emerging SARS-CoV-2 variants lead to repeated epidemic surges through escalated spreading potential (i.e., fitness). Modeling genotype–fitness relationship enables us to pinpoint the mutations boosting viral fitness and flag high-risk variants immediately after their detection. Here, we introduce CoVFit, a protein language model able to predict the fitness of variants based solely on their spike protein sequences.
 
 ## Contents
 ### CoVFit-CLI
