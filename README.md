@@ -12,8 +12,10 @@ Successively emerging SARS-CoV-2 variants lead to repeated epidemic surges throu
 - Figures
 - Dataset
 ### Domain Adaptation
+- Description
 ### ML Comparison Models
-
+- Description
+- Figures
 
 ## Citation
 **A Protein Language Model for Exploring Viral Fitness Landscapes**. Jumpei Ito, Adam Strange, Wei Liu, Gustav Joas, Spyros Lytras, The Genotype to Phenotype Japan (G2P-Japan) Consortium, Kei Sato. 2024. bioRxiv.
