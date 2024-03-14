@@ -6,7 +6,11 @@ Successively emerging SARS-CoV-2 variants lead to repeated epidemic surges throu
 
 ## Contents
 ### CoVFit-CLI
+- Download and intructions in the example section.
 ### CoVFit Training
+- Training
+- Figures
+- Dataset
 ### Domain Adaptation
 ### ML Comparison Models
 
