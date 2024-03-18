@@ -2,18 +2,20 @@
 The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ### Installation
-Download the `CovFit_cli.tar.gz` file from Zenodo at `http...` and extract the contents.
-Once extracted, you'll find the CovFit_cli executable inside a folder of the same name.
+Download the `CovFit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
+`tar -xvf path/to/folder/CovFit_cli.tar.gz` <br>
+Once extracted, you'll find the CovFit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
 
 ### Running
 To view the full command line syntax and options for the CovFit CLI, `cd` to the `CovFit_cli` directory and input:<br>
 `./CovFit_cli --help`
 
-An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19` directory would be:<br>
+An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory would be:<br>
 `./CovFit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
  
 The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. The file will be placed in the location designated by `-o, --outdir`, in this example `~/Documents/covid19/output/`. If the output directory does not exist, it will be created. <br>
-A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance.**Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
+
+A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance. **Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
 
 ### Folds
 The CovFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument and an integer from 0 to 4.   
