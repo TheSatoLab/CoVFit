@@ -9,11 +9,11 @@ Once extracted, you'll find the CovFit_cli executable inside a folder of the sam
 To view the full command line syntax and options for the CovFit CLI, `cd` to the `CovFit_cli` directory and input:<br>
 `./CovFit_cli --help`
 
-An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/Covid` directory would be:<br>
-`./CovFit_cli --input ~/Documents/Covid/my_file.fasta --outdir ~/Documents/Covid/output/`<br>
-A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance. 
-
-The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. **Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
+An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19` directory would be:<br>
+`./CovFit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
+ 
+The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. The file will be placed in the location designated by `-o, --outdir`, in this example `~/Documents/covid19/output/`. If the output directory does not exist, it will be created. <br>
+A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance.**Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
 
 ### Folds
 The CovFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument and an integer from 0 to 4.   
