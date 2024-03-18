@@ -3,14 +3,14 @@ The CovFit CLI allows you to calculate fitness and DMS predictions on any standa
 
 ### Installation
 Download the `covfit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
-`tar -xzvf path/to/folder/CovFit_cli.tar.gz` <br>
-Once extracted, you'll find the CovFit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
+`tar -xzvf path/to/folder/covfit_cli.tar.gz` <br>
+Once extracted, you'll find the covfit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
 
 ### Running
 To view the full command line syntax and options for the CoVFit CLI, `cd` to the `CoVFit_cli` directory and input:<br>
 `./covfit_cli --help`
 
-A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following command: `./covfit_cli --input covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
+A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following simple command: `./covfit_cli -i covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
 
 An example of using CoVFit on your own data if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory would be:<br>
 `./covfit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
