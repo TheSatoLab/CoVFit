@@ -10,10 +10,9 @@ Once extracted, you'll find the CovFit_cli executable inside a folder of the sam
 To view the full command line syntax and options for the CovFit CLI, `cd` to the `CovFit_cli` directory and input:<br>
 `./covfit_cli --help`
 
-A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following command: <br>
-`./covfit_cli --input covfit_samples.fasta` which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
+A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following command: `./covfit_cli --input covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
 
-An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory would be:<br>
+An example of using CovFit on your own data if you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory would be:<br>
 `./covfit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
  
 The output file will be named `CoVFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. The file will be placed in the location designated by `-o, --outdir`, in this example `~/Documents/covid19/output/`. If the output directory does not exist, it will be created. <br>
