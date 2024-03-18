@@ -12,7 +12,7 @@ Continually emerging SARS-CoV-2 variants lead to repeated epidemic surges throug
 - Figures
 - Dataset
 ### Domain Adaptation
-- Description
+- Code used for performing domain adaptation to produce the ESM-2<sub>coronaviradae</sub> model available [here](https://github.com/TheSatoLab/CoVFit/blob/main/Domain%20Adaptation/Domain_Adaptation_training.py).
 ### ML Comparison Models
 - Description
 - Figures
