@@ -11,6 +11,7 @@ To view the full command line syntax and options for the CovFit CLI, `cd` to the
 
 An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/Covid` directory would be:<br>
 `./CovFit_cli --input ~/Documents/Covid/my_file.fasta --outdir ~/Documents/Covid/output/`<br>
+A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance. 
 
 The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. **Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
 
