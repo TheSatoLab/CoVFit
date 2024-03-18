@@ -1,8 +1,8 @@
 # CovFit CLI
-The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or WSL2 terminal (x86_64).
+The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ### Installation
-Download the `CovFit_cli.tar.gz` file from `http...` and extract the contents.
+Download the `CovFit_cli.tar.gz` file from Zenodo at `http...` and extract the contents.
 Once extracted, you'll find the CovFit_cli executable inside a folder of the same name.
 
 ### Running
@@ -12,7 +12,7 @@ To view the full command line syntax and options for the CovFit CLI, `cd` to the
 An example of using CovFit if you have a fasta file named `my_file.fasta` in your `~/Documents/Covid` directory would be:<br>
 `./CovFit_cli --input ~/Documents/Covid/my_file.fasta --outdir ~/Documents/Covid/output/`<br>
 
-The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. Note that CovFit CLI will overwrite files in the output directory with the same fold number. 
+The output file will be named `CovFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. **Note that CovFit CLI will overwrite files in the output directory with the same fold number**. 
 
 ### Folds
 The CovFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument and an integer from 0 to 4.   
