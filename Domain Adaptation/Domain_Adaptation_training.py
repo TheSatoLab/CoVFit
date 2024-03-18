@@ -13,7 +13,7 @@ import math
 import datetime
 
 
-### Global Parameters
+### Parameters
 
 version = 'ESM2_650M_DA_combo_e30_lrsWarmupCosine'
 model_type = 'facebook/esm2_t33_650M_UR50D'
