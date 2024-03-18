@@ -6,7 +6,7 @@ Continually emerging SARS-CoV-2 variants lead to repeated epidemic surges throug
 
 ## Contents
 ### CoVFit-CLI
-- The CoVFit models can be downloaded and used as a stand-alone command line tool to predict the viral fitness of SARS-CoV-2 spike protein sequences in fasta format. Download link and intructions are in the example section.
+- The CoVFit models can be downloaded and used as a stand-alone command line tool to predict the viral fitness of SARS-CoV-2 spike protein sequences in fasta format. Download link and instructions are available [here](https://github.com/TheSatoLab/CoVFit/blob/main/CoVFit_CLI/ReadMe.md).
 ### CoVFit Training
 - Training
 - Figures
