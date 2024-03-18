@@ -2,12 +2,12 @@
 The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ### Installation
-Download the `CovFit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
+Download the `covfit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
 `tar -xzvf path/to/folder/CovFit_cli.tar.gz` <br>
 Once extracted, you'll find the CovFit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
 
 ### Running
-To view the full command line syntax and options for the CovFit CLI, `cd` to the `CovFit_cli` directory and input:<br>
+To view the full command line syntax and options for the CoVFit CLI, `cd` to the `CoVFit_cli` directory and input:<br>
 `./covfit_cli --help`
 
 A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following command: `./covfit_cli --input covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
