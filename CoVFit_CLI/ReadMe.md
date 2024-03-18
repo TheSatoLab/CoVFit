@@ -3,7 +3,7 @@ The CovFit CLI allows you to calculate fitness and DMS predictions on any standa
 
 ### Installation
 Download the `CovFit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
-`tar -xvf path/to/folder/CovFit_cli.tar.gz` <br>
+`tar -xzvf path/to/folder/CovFit_cli.tar.gz` <br>
 Once extracted, you'll find the CovFit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
 
 ### Running
