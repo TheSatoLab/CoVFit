@@ -2,8 +2,11 @@
 The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ## Installation
-Download the `covfit_cli.tar.gz` file from Zenodo at `http...` and extract the contents. You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
+Download the `covfit_cli.tar.gz` file from Zenodo at [https://doi.org/10.5281/zenodo.10820618](https://doi.org/10.5281/zenodo.10820618) and extract the contents. 
+
+You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
 `tar -xzvf path/to/folder/covfit_cli.tar.gz` <br>
+
 Once extracted, you'll find the covfit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
 
 ## Running
@@ -12,7 +15,7 @@ To view the full command line syntax and options for the CoVFit CLI, `cd` to the
 #### Test
 A sample fasta file is included in the CoVFit directory for testing purposes. Run CoVFit on the sample sequences with the following simple command: `./covfit_cli -i covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
 #### Example
-If you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory would be:<br>
+If you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory, a basic run command would be:<br>
 `./covfit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
  The output file will be named `CoVFit_Predictions_Fold_X.tsv`, where `X` is the number of the model instance used. The file will be placed in the location designated by `-o, --outdir`, in this example `~/Documents/covid19/output/`. If the output directory does not exist, it will be created. <br>
 
