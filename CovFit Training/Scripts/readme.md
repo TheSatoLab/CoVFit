@@ -1,6 +1,8 @@
 Scripts for training various versions of CovFit:
 - Aug22
-- July23
-- Full
-- No DA
-- No DMS
+- Jul23
+- Nov23
+
+'''
+python3 training_covfit_Novl23.py <fold ID> <output directory path>
+'''
