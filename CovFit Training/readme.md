@@ -10,5 +10,5 @@
 
 ## Usage:
 ```
-python3 training_covfit_Novl23.py <fold ID> <output directory path>
+python3 training_covfit_Nov23.py <fold ID> <output directory path>
 ```
