@@ -31,7 +31,7 @@ By default, CoVFit CLI will return predictions for viral fitness. Specifying the
 The batch size argument, set with `-b, --batch`, controls how many sequences are processed per batch. A high batch number may increase inference speed, but will increase memory consumption. The default batch size is 4.
 
 ### CPU vs GPU
-By default, CoVFit CLI will perform calculations on the CPU. Performing the calculations on a GPU using the `-g, --gpu` argument may significantly increase inference speed. An Nvidia GPU and CUDA installation are required. 
+By default, CoVFit CLI will perform calculations on the CPU. Performing the calculations on a GPU using the `-g, --gpu` argument may significantly increase inference speed. An Nvidia GPU and CUDA 12 installation are required. 
 
 ## Example with full options:
 The following command:<br>
