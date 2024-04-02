@@ -41,5 +41,6 @@ will perform inference on the GPU with 16 sequences per batch and output the fil
 To separate just the DMS results in a separate file, you can for instance use: `cut -f 1,3-1550 CoVFit_Predictions_fold_3.tsv > just_DMS.tsv`, or for just the fitness fields: `cut --complement -f 3-1550 CoVFit_Predictions_fold_3.tsv > just_fitness.tsv`
 
 ## Advanced
-As an alternative to using the `covfit_cli` executable, the `run_covfit.py` Python file is included in the CoVFit_CLI directory. `run_covfit.py` uses the same command-line arguments as the executable. `transformers`, `peft`, `torch`, and `pandas` are required. It is recommended to create a conda env for CoVFit and install them with pip.  
+As an alternative to using the `covfit_cli` executable, the `run_covfit.py` Python file is included in the CoVFit_CLI directory. `run_covfit.py` uses the same command-line arguments as the executable. `transformers`, `peft`, `torch`, and `pandas` are required. It is recommended to create a conda env for CoVFit and install them with pip. The script can then be run like: <br>
+`python3 run_covfit.py -i my_file.fasta -o my_folder -b 64 -f 3 -g -d`
 
