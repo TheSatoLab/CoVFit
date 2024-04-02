@@ -7,13 +7,13 @@ Download the `covfit_cli.tar.gz` file from Zenodo at [https://doi.org/10.5281/ze
 You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
 `tar -xzvf path/to/folder/covfit_cli.tar.gz` <br>
 
-Once extracted, you'll find the covfit_cli executable inside a folder of the same name. No specific installation procedure is required beyond extracting the files.
+Once extracted, you'll find the covfit_cli executable inside the CoVFit_CLI folder. No specific installation procedure is required beyond extracting the files.
 
 ## Running
-To view the full command line syntax and options for the CoVFit CLI, `cd` to the `CoVFit_cli` directory and input:<br>
+To view the full command line syntax and options for the CoVFit CLI, `cd` to the `CoVFit_CLI` directory and input:<br>
 `./covfit_cli --help`
 #### Test
-A sample fasta file is included in the CoVFit directory for testing purposes. First, `cd` to the `CoVFit_cli` directory, and then run CoVFit on the sample sequences with the following simple command: `./covfit_cli -i covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
+A sample fasta file is included in the CoVFit directory for testing purposes. First, `cd` to the `CoVFit_CLI` directory, and then run CoVFit on the sample sequences with the following simple command: `./covfit_cli -i covfit_samples.fasta`, which will output `CoVFit_Predictions_Fold_0.tsv`. The CoVFit directory also includes `covfit_samples_nextclade.tsv` which includes nextclade metadata for the sample sequences.  
 #### Example
 If you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` directory, a basic run command would be:<br>
 `./covfit_cli --input ~/Documents/covid19/my_file.fasta --outdir ~/Documents/covid19/output/`<br>
@@ -38,5 +38,8 @@ The following command:<br>
 `./covfit_cli --input my_file.fasta -outdir ~/Documents/covid19/output/ --fold 3 --dms --batch 16 --gpu` <br>
 will perform inference on the GPU with 16 sequences per batch and output the file `~/Documents/covid19/output/CoVFit_Predictions_Fold_3.tsv` where the first column is the mean fitness score accross countries, the next 1,548 columns are the DMS results, and the final 17 columns are the fitness results for each country.
 
-To separate just the DMS results in a separate file, you can for instance use: `cut -f 1,3-1550 CoVFit_Predictions_fold_3.tsv > just_DMS.tsv`, or for just the fitness fields: `cut --complement -f 3-1550 CoVFit_Predictions_fold_3.tsv > just_fitness.tsv` 
+To separate just the DMS results in a separate file, you can for instance use: `cut -f 1,3-1550 CoVFit_Predictions_fold_3.tsv > just_DMS.tsv`, or for just the fitness fields: `cut --complement -f 3-1550 CoVFit_Predictions_fold_3.tsv > just_fitness.tsv`
+
+## Advanced
+As an alternative to using the `covfit_cli` executable, the `run_covfit.py` Python file is included in the CoVFit_CLI directory. `run_covfit.py` uses the same command-line arguments as the executable. `transformers`, `peft`, `torch`, and `pandas` are required. It is recommended to create a conda env for CoVFit and install them with pip.  
 
