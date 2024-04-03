@@ -22,7 +22,7 @@ If you have a fasta file named `my_file.fasta` in your `~/Documents/covid19/` di
 A fasta file with 100 sequences can generally be processed within a couple minutes, depending on system performance. **Note that CoVFit CLI will overwrite files in the output directory with the same fold number**. 
 
 ### Folds
-The CoVFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold' argument and an integer from 0 to 4.   
+The CoVFit CLI will run using one of the five model instances. The default is model instance 0. You can specify a particular model instance with the `-f, --fold` argument and an integer from 0 to 4.   
 
 ### DMS
 By default, CoVFit CLI will return predictions for viral fitness. Specifying the `-d, --dms` flag will additionally output the prediction scores for the 1,548 DMS tasks the model was trained on. 
