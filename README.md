@@ -2,7 +2,7 @@
 A protein language model for accurately predicting the fitness of SARS-CoV-2 variants
 
 ## Summary
-Continually emerging SARS-CoV-2 variants lead to repeated epidemic surges through escalated spreading potential (i.e., fitness). This repsitory hosts the software and code of CoVFit, a protein language model able to predict the fitness of newly emerged variants based solely on their spike protein sequences.
+Continually emerging SARS-CoV-2 variants lead to repeated epidemic surges through escalated spreading potential (i.e., fitness). This repository hosts the software and code of CoVFit, a protein language model able to predict the fitness of newly emerged variants based solely on their spike protein sequences.
 
 ## Contents
 ### CoVFit-CLI
