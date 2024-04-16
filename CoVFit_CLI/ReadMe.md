@@ -1,5 +1,5 @@
-# CovFit CLI
-The CovFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
+# CoVFit CLI
+The CoVFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ## Installation
 Download the `covfit_cli_20231102.tar.gz` file from Zenodo at [https://zenodo.org/records/10911205](https://zenodo.org/doi/10.5281/zenodo.10820617) and extract the contents. 
