@@ -3,14 +3,15 @@
 **Scripts** contains codes for training various versions of CoVFit:
 - Aug22: Training with genotype-fitness dataset up until August 31, 2022
 - Jul23: Training with genotype-fitness dataset up until July 31, 2023
-- Nov23: Training with the whole period genotype-fitness dataset
+- Nov23: Training with genotype-fitness dataset up until November 2, 2023
+- Oct24: Training with genotype-fitness dataset up until October 7, 2024
 
 
 
 
 ## Usage:
 ```
-python3 training_covfit_Nov23.py <fold ID> <output directory path>
+python3 training_covfit_Oct24.py <fold ID> <output directory path>
 ```
 
 ## Inputs detail:
