@@ -1,11 +1,11 @@
 # CoVFit CLI
-The CoVFit CLI allows you to calculate fitness and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
+The CoVFit CLI allows you to calculate fitness (R<sub>e</sub>) and DMS predictions on any standard fasta file of SARS-CoV-2 spike protein sequences from a Linux or Windows WSL2 terminal (x86_64). The CLI was packaged on Ubuntu 20.04 and has been tested on 18.04 and 22.04.
 
 ## Installation
-Download the `covfit_cli_20231102.tar.gz` file from Zenodo at [https://zenodo.org/records/10911205](https://zenodo.org/doi/10.5281/zenodo.10820617) and extract the contents. 
+Download the `covfit_cli_20241007.tar.gz` file from Zenodo at [zenodo.org/records/14438178](https://zenodo.org/doi/10.5281/zenodo.14438178) and extract the contents. 
 
 You may be able to extract the tar.gz file by double-clicking on it in your file explorer. Alternatively, it can be extracted from the command line with: <br>
-`tar -xzvf path/to/folder/covfit_cli_20231102.tar.gz` <br>
+`tar -xzvf path/to/folder/covfit_cli_20241007.tar.gz` <br>
 
 Once extracted, you'll find the covfit_cli executable inside the CoVFit_CLI folder. No specific installation procedure is required beyond extracting the files.
 
@@ -38,7 +38,7 @@ The following command:<br>
 `./covfit_cli --input my_file.fasta -outdir ~/Documents/covid19/output/ --fold 3 --dms --batch 16 --gpu` <br>
 will perform inference on the GPU with 16 sequences per batch and output the file `~/Documents/covid19/output/CoVFit_Predictions_Fold_3.tsv` where the first column is the mean fitness score accross countries, the next 1,548 columns are the DMS results, and the final 17 columns are the fitness results for each country.
 
-To separate just the DMS results in a separate file, you can for instance use: `cut -f 1,3-1550 CoVFit_Predictions_fold_3.tsv > just_DMS.tsv`, or for just the fitness fields: `cut --complement -f 3-1550 CoVFit_Predictions_fold_3.tsv > just_fitness.tsv`
+To separate just the DMS results in a separate file, you can for instance use: <br>`cut -f 1,3-1550 CoVFit_Predictions_fold_3.tsv > just_DMS.tsv`, <br>or for just the fitness fields: <br>`cut --complement -f 3-1550 CoVFit_Predictions_fold_3.tsv > just_fitness.tsv`
 
 ## Advanced
 As an alternative to using the `covfit_cli` executable, the `run_covfit.py` Python file is included in the CoVFit_CLI directory. `run_covfit.py` uses the same command-line arguments as the executable. `transformers`, `peft`, `torch`, and `pandas` are required. It is recommended to create a conda env for CoVFit and install them with pip. The script can then be run like: <br>

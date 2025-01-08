@@ -3,6 +3,7 @@
 **Scripts** contains codes for training various versions of CoVFit:
 - Past: Training with genotype-fitness dataset up until a given cutoff date
 - Nov23: Training with the whole period genotype-fitness dataset
+- Oct24: Training with genotype-fitness dataset up until October 7, 2024
 
 
 
@@ -11,6 +12,7 @@
 ```
 python3 training_covfit_all_span.py <fold ID> <output directory path>
 python3 training_covfit_sliding_cutoff.py <fold ID> <cutoff date> <output directory path>
+python3 training_covfit_Oct24.py <fold ID> <output directory path>
 ```
 
 ## Inputs detail:
