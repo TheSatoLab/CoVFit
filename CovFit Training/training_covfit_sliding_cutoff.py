@@ -23,10 +23,10 @@ argvs = sys.argv
 
 #hyper parameters###############################
 max_length = 1024 # max token length
-cutoff = pd.to_datetime("2023-11-02") # cutoff date
 min_country = 300 # Countries with <300 genotype-fitness data were removed.
-date_thresh = pd.to_datetime("2023-11-02") # for loss weighting by variant emergence date
-target_strain = "D614G"
+date_thresh = pd.to_datetime("2022-01-01") # for loss weighting by variant emergence date
+target_strain = "BA.2"
+negative_clade_list = ["recombinant"]
 
 #inputs###############################
 dir="/work/ge17/e17000/variant_fitness/esm_multitask/"
@@ -34,9 +34,10 @@ MODEL_NAME = "facebook/esm2_t33_650M_UR50D"
 DA_model_name = dir + "DA_model/model_uniESM2_650M_DA_combo_e30_lrsWarmupCosine"
 
 fold_id = int(argvs[1])
-output_prefix = dir + "output/" + argvs[2]
+cutoff = pd.to_datetime(argvs[2])
+output_prefix = dir + "output/" + argvs[3]
 
-full_df_name = dir + "input_230829/metadata.representative.all_countries.with_date.v2.with_seq.txt"
+full_df_name = dir + "input_230829/metadata.representative.all_countries.with_date.v2.with_seq_231102_wo_variants_before_cutoff.txt"
 antibody_escape_f_name = dir + "input_230829/escape_data_mutation.csv"
 dms_fasta_f_name = dir + "input_230829/nextclade.peptide.S_rename.fasta"
 
@@ -48,8 +49,6 @@ random.seed(randseed)
 torch.manual_seed(randseed)
 torch.cuda.manual_seed(randseed)
 np.random.seed(randseed)
-
-
 
 
 
@@ -96,7 +95,7 @@ def encode_categorical_variables(categories):
 #splitting training data
 from sklearn.model_selection import StratifiedKFold
 
-def stratified_kfold_data_split(df, k=5, fold_id=0, seed=randseed):
+def stratified_kfold_data_split(df, k=5, fold_id=0, seed=13):
     y = df['split_class']
     kf = StratifiedKFold(n_splits=k, shuffle=True, random_state=seed)
     splits = list(kf.split(df, y))
@@ -304,7 +303,7 @@ input_df_selected.loc[:,'date.first']=pd.to_datetime(input_df_selected['date.fir
 
 #combining data###############################
 cat_df = pd.concat([input_df_selected, antibody_escape_df_selected])
-cat_df = cat_df.sample(frac=1,random_state=randseed)
+cat_df = cat_df.sample(frac=1,random_state=13)
 cat_df = cat_df.set_axis(range(len(cat_df)))
 
 #removing genotypes with >5 Xs or >30 hyphens###############################
@@ -354,8 +353,8 @@ for k,v in weight_dict.items():
 cat_df.loc[:,'major_group2'] = np.where((cat_df['major_group'] == 'fitness') & (cat_df['date.first'] >= date_thresh), 'fitness_recent',
                                      np.where((cat_df['major_group'] == 'fitness') & (cat_df['date.first'] < date_thresh), 'fitness',cat_df['major_group']))
 
-weight_dict["fitness"] = weight_dict["fitness"] * 2 # doubling weights for fitness tasks
-weight_dict["fitness_recent"] = weight_dict["fitness"] * 1 # doubling weights for recent variants
+weight_dict["fitness"] = weight_dict["fitness"] * 1 # In the past-future experiments, weights only for variants emrged later than 2022-01-01 were doubled.
+weight_dict["fitness_recent"] = weight_dict["fitness"] * 2 # doubling weights for recent variants
 
 cat_df.loc[:,"weight"] = [weight_dict[c] for c in cat_df['major_group2']]
 
@@ -367,13 +366,14 @@ cat_df.loc[:,"split_class"] =  np.where((cat_df['major_group'] == 'fitness'), ca
 #preserving future
 future_df = cat_df[cat_df['date.first']>=cutoff]
 cat_df = cat_df[(cat_df['date.first']<cutoff) | (cat_df['date.first'].isna())]
+cat_df = cat_df[~cat_df["clade"].isin(negative_clade_list)] #removing future variants of interest from the past dataset
 
 #data split
-cat_df = cat_df.sample(frac=1,random_state=randseed)
+cat_df = cat_df.sample(frac=1,random_state=13)
 cat_df = cat_df.set_axis(range(len(cat_df)))
 
 cat_df_train, cat_df_val, cat_df_test = stratified_kfold_data_split(cat_df, fold_id=fold_id)
-
+future_df = future_df.reset_index(drop=True)
 
 #preparing dataset###############################
 from transformers import AutoTokenizer, Trainer, TrainingArguments, DefaultDataCollator
@@ -385,7 +385,7 @@ n_targets = len(task_id_infos)
 input_ids_train, attention_masks_train, outcomes_train, weights_train, idxs_train = preprocess_data(cat_df_train, n_targets, max_length, tokenizer)
 input_ids_val, attention_masks_val, outcomes_val, weights_val, idxs_val = preprocess_data(cat_df_val, n_targets, max_length, tokenizer)
 input_ids_test, attention_masks_test, outcomes_test, weights_test, idxs_test = preprocess_data(cat_df_test, n_targets, max_length, tokenizer)
-
+input_ids_future, attention_masks_future, outcomes_future, weights_future, idxs_future = preprocess_data(future_df, n_targets, max_length, tokenizer, n_samples = 17)
 
 class TextDataset(Dataset):
     def __init__(self, input_ids, attention_masks, labels, weights):
@@ -410,10 +410,10 @@ class TextDataset(Dataset):
 dataset_train = TextDataset(input_ids_train, attention_masks_train, outcomes_train, weights_train)
 dataset_val = TextDataset(input_ids_val, attention_masks_val, outcomes_val, weights_val)
 dataset_test = TextDataset(input_ids_test, attention_masks_test, outcomes_test, weights_test)
-
+dataset_future = TextDataset(input_ids_future, attention_masks_future, outcomes_future, weights_future)
 
 #model construction###############################
-from transformers import EsmModel, EsmConfig, PreTrainedModel
+from transformers import EsmModel, EsmConfig, PreTrainedModel, AutoModelForSequenceClassification
 from transformers.modeling_outputs import SequenceClassifierOutput
 import torch
 import torch.nn as nn
@@ -421,7 +421,7 @@ import torch.nn as nn
 class EsmForRegression(PreTrainedModel):
     config_class = EsmConfig
     #setting task-specific regression heads
-    def __init__(self, config, n_targets, intermediate_dim=256, dropout_rate=0.1):
+    def __init__(self, config, n_targets, intermediate_dim=256, dropout_rate=0.5):
         super(EsmForRegression, self).__init__(config)
         self.esm = EsmModel(config)
         self.regressor = nn.Sequential(
@@ -461,6 +461,7 @@ class EsmForRegression(PreTrainedModel):
             hidden_states=outputs.hidden_states,
             attentions=outputs.attentions,
     )
+
 
 esm_config = EsmConfig.from_pretrained(DA_model_name)
 model = EsmForRegression(esm_config,n_targets)
@@ -508,13 +509,14 @@ training_args = TrainingArguments(
     learning_rate=2e-4,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=16,
-    gradient_accumulation_steps=2,
+    gradient_accumulation_steps=4,
     fp16=True,
     load_best_model_at_end=True,
     remove_unused_columns=False,
     logging_steps=1,
-    num_train_epochs=30,
+    num_train_epochs=20,
     weight_decay=0.02,
+    warmup_ratio=0.05,
     logging_dir="./logs",
     save_strategy="epoch",
     save_total_limit=1,
@@ -553,7 +555,28 @@ predicted_df.index = masked_idxs_test.tolist()
 
 predicted_df = pd.merge(predicted_df, cat_df_test, left_index=True, right_index=True)
 
+
+#prediction for future variants###############################
+predictions_future = trainer.predict(dataset_future)
+
+mask_future = ~torch.isnan(idxs_future)
+
+masked_outcomes_future = outcomes_future[mask_future]
+masked_predictions_future = torch.tensor(predictions_future.predictions)[mask_future]
+masked_idxs_future = idxs_future[mask_future].int()
+
+
+predicted_df_future = pd.DataFrame({
+    'predicted_outcome': masked_predictions_future.numpy()
+})
+predicted_df_future.index = masked_idxs_future.tolist()
+predicted_df_future = pd.merge(predicted_df_future, future_df, left_index=True, right_index=True)
+predicted_df_future_fitness = predicted_df_future[predicted_df_future["group"] == "fitness"]
+
 #output###############################
 out_test_f_name = output_prefix + "predicted_test.txt"
 predicted_df.to_csv(out_test_f_name,header=True, index=False, sep='\t')
+
+out_future_f_name = output_prefix + "predicted_future.txt"
+predicted_df_future_fitness.to_csv(out_future_f_name,header=True, index=False, sep='\t')
 

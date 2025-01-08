@@ -24,7 +24,7 @@ core.num <- 12
 date.max <- "2023-10-15"
 ref_hap_clade <- "22B"
 
-setwd("/Users/jumpeiito/Desktop/analysis/Sato_analysis/fitness_prediction/dataset/231102")
+setwd("your directory")
 
 UK.v <- c("England","Scotland","Wales")
 

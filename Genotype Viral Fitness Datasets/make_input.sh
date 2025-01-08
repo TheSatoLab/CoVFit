@@ -7,3 +7,5 @@ python count_X.py gene_S.translation.fasta > gene_S.translation.count_table.txt
 Rscript make_input_all_region.3.R
 
 python make_input_table_add_seq.py metadata.representative.all_countries.with_date.txt gene_S.translation.fasta >  metadata.representative.all_countries.with_date.with_aligned_seq.txt
+
+Rscript filtering_rm_variants_before_cutoff.R
