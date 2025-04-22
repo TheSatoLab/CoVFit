@@ -44,7 +44,7 @@ To separate just the DMS results in a separate file, you can for instance use: <
 As an alternative to using the `covfit_cli` executable, the `run_covfit.py` Python file is included in the CoVFit_CLI directory. `run_covfit.py` uses the same command-line arguments as the executable. `transformers==4.46.3`, `peft==0.13.2`, `torch==2.4.1`, `biopython==1.83` and `pandas==2.0.3` are required. It is recommended to create a conda env for CoVFit and install them with pip. The script can then be run like: <br>
 `python3 run_covfit.py -i my_file.fasta -o my_folder -b 64 -f 3 -g -d`
 
-It is also possible to use conda to build an environment from a yml file.
-`conda env -n envname create -f environment.yml`
-Activate and run the created environment.
+It is also possible to use conda to build an environment from a yml file.<br>
+`conda env -n envname create -f environment.yml`<br>
+Activate and run the created environment.<br>
 `conda activate envname`
